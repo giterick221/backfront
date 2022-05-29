@@ -1,19 +1,22 @@
 import db from "../config/database.js";
 
 export const obtenerFiscalesDb = (result) => {
-  db.query("SELECT * FROM fiscales WHERE oculto = 0", (err, results) => {
-    if (err) {
-      console.log(err);
-      result(err, null);
-    } else {
-      result(null, results);
+  db.query(
+    "SELECT * FROM usuarios u INNER JOIN tipo_usuario tu WHERE u.id_usuario = tu.id_usuario_tipo AND tu.tipo_usuario='fiscal' AND oculto_usuario='0'",
+    (err, results) => {
+      if (err) {
+        console.log(err);
+        result(err, null);
+      } else {
+        result(null, results);
+      }
     }
-  });
+  );
 };
 
 export const obtenerFiscalesIdDb = (id, result) => {
   db.query(
-    "SELECT * FROM fiscales WHERE ci_fiscal = ?",
+    "SELECT * FROM usuarios WHERE oculto_usuario='0' AND id_usuario = ? ",
     [id],
     (err, results) => {
       if (err) {
@@ -27,7 +30,7 @@ export const obtenerFiscalesIdDb = (id, result) => {
 };
 
 export const insertarFiscalDb = (data, result) => {
-  db.query("INSERT INTO fiscales SET ?", [data], (err, results) => {
+  db.query("INSERT INTO usuarios SET ?", [data], (err, results) => {
     if (err) {
       console.log(err);
       result(err, null);
@@ -39,31 +42,12 @@ export const insertarFiscalDb = (data, result) => {
 
 export const actualizarFiscalDb = (data, id, result) => {
   db.query(
-    "UPDATE comminatorias SET\
-        cud = ?,\
-        nurej = ?,\
-        fiscal = ?,\
-        denunciado = ?,\
-        denunciante = ?,\
-        delito = ?,\
-        fecha_notif_cd = ?,\
-        fecha_notif_fiscal = ?,\
-        realizado = ?,\
-        tiempo_restante = ?\
-        WHERE id_conminatoria = ?",
-    [
-      data.cud,
-      data.nurej,
-      data.fiscal,
-      data.denunciado,
-      data.denunciante,
-      data.delito,
-      data.fecha_notif_cd,
-      data.fecha_notif_fiscal,
-      data.realizado,
-      data.tiempo_restante,
-      id,
-    ],
+    "UPDATE usuarios SET\
+        ci_usuario = ?,\
+        nombre_completo_usuario = ?,\
+        telefono_usuario = ?\
+        WHERE id_usuario = ?",
+    [data.ci_usuario, data.nombre_completo_usuario, data.telefono_usuario, id],
     (err, results) => {
       if (err) {
         console.log(err);
@@ -76,12 +60,16 @@ export const actualizarFiscalDb = (data, id, result) => {
 };
 
 export const ocultarFiscalDb = (id, result) => {
-  db.query("DELETE FROM fiscales WHERE ci_fiscal = ?", [id], (err, results) => {
-    if (err) {
-      console.log(err);
-      result(err, null);
-    } else {
-      result(null, results);
+  db.query(
+    "UPDATE usuarios SET oculto_usuario = '1' WHERE id_usuario = ?",
+    [id],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+        result(err, null);
+      } else {
+        result(null, results);
+      }
     }
-  });
+  );
 };

@@ -31,13 +31,16 @@
           <td>{{ item.realizado_conmi }}</td>
           <td class="has-text-centered">
             <router-link
-              :to="{ name: 'editar', params: { id: item.id_conmi } }"
+              :to="{
+                name: 'editarConminatoria',
+                params: { id: item.id_conmi },
+              }"
               class="button is-info is-small"
               >Editar</router-link
             >
             <a
               class="button is-danger is-small"
-              @click="deleteProduct(item.id_conmi)"
+              @click="ocultarConminatoria(item.id_conmi)"
               >eliminar</a
             >
           </td>
@@ -60,12 +63,12 @@ export default {
   },
 
   created() {
-    this.getProducts();
+    this.getConminatorias();
   },
 
   methods: {
     // Get All Products
-    async getProducts() {
+    async getConminatorias() {
       try {
         const response = await axios.get("http://localhost:9001/conminatorias");
         this.items = response.data;
@@ -75,10 +78,10 @@ export default {
     },
 
     // Delete Product
-    async deleteProduct(id) {
+    async ocultarConminatoria(id) {
       try {
         await axios.delete(`http://localhost:9001/conminatorias/${id}`);
-        this.getProducts();
+        this.getConminatorias();
       } catch (err) {
         console.log(err);
       }

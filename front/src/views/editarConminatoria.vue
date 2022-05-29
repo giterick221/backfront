@@ -4,18 +4,13 @@
     <div class="field">
       <label class="label">CUD</label>
       <div class="control">
-        <input
-          class="input"
-          type="text"
-          placeholder="Product Name"
-          v-model="cud"
-        />
+        <input class="input" type="text" placeholder="CUD" v-model="cud" />
       </div>
     </div>
     <div class="field">
       <label class="label">NUREJ</label>
       <div class="control">
-        <input class="input" type="text" placeholder="Price" v-model="nurej" />
+        <input class="input" type="text" placeholder="NUREJ" v-model="nurej" />
       </div>
     </div>
     <div class="field">
@@ -24,7 +19,7 @@
         <input
           class="input"
           type="text"
-          placeholder="Product Name"
+          placeholder="FISCAL"
           v-model="fiscal"
         />
       </div>
@@ -35,7 +30,7 @@
         <input
           class="input"
           type="text"
-          placeholder="Product Name"
+          placeholder="DENUNCIADO"
           v-model="denunciado"
         />
       </div>
@@ -46,7 +41,7 @@
         <input
           class="input"
           type="text"
-          placeholder="Product Name"
+          placeholder="DENUNCIANTE"
           v-model="denunciante"
         />
       </div>
@@ -57,7 +52,7 @@
         <input
           class="input"
           type="text"
-          placeholder="Product Name"
+          placeholder="DELITO"
           v-model="delito"
         />
       </div>
@@ -68,7 +63,7 @@
         <input
           class="input"
           type="date"
-          placeholder="Product Name"
+          placeholder="FECHA CD"
           v-model="fecha_notif_cd"
         />
       </div>
@@ -79,7 +74,7 @@
         <input
           class="input"
           type="date"
-          placeholder="Product Name"
+          placeholder="FECHA FIS"
           v-model="fecha_notif_fiscal"
         />
       </div>
@@ -90,7 +85,7 @@
         <input
           class="input"
           type="text"
-          placeholder="Product Name"
+          placeholder="REALIZADO"
           v-model="realizado"
         />
       </div>
@@ -101,13 +96,15 @@
         <input
           class="input"
           type="date"
-          placeholder="Product Name"
+          placeholder="TIEMPO RESTANTE"
           v-model="tiempo_restante"
         />
       </div>
     </div>
     <div class="control">
-      <button class="button is-success" @click="updateProduct">UPDATE</button>
+      <button class="button is-success" @click="editarConminatoria">
+        ACTUALIZAR
+      </button>
     </div>
   </div>
 </template>
@@ -117,7 +114,7 @@
 import axios from "axios";
 
 export default {
-  name: "EditProduct",
+  name: "editarConminatoria",
   data() {
     return {
       cud: "",
@@ -133,11 +130,11 @@ export default {
     };
   },
   created: function () {
-    this.getProductById();
+    this.getConminatoriaId();
   },
   methods: {
     // Get Product By Id
-    async getProductById() {
+    async getConminatoriaId() {
       try {
         const respuestaApi = await axios.get(
           `http://localhost:9001/conminatorias/${this.$route.params.id}`
@@ -158,7 +155,7 @@ export default {
     },
 
     // Update product
-    async updateProduct() {
+    async editarConminatoria() {
       try {
         await axios.put(
           `http://localhost:9001/conminatorias/${this.$route.params.id}`,

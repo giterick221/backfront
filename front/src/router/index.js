@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import inicio from "../views/inicio.vue";
-import ingresar from "../views/ingresar.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,12 +10,12 @@ const router = createRouter({
       component: inicio,
     },
     {
-      path: "/registrar",
-      name: "registrar",
+      path: "/insertar",
+      name: "insertar",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import("../views/registrar.vue"),
+      component: () => import("../views/insertar.vue"),
     },
     {
       path: "/fiscales",
@@ -27,20 +26,20 @@ const router = createRouter({
       component: () => import("../views/fiscales.vue"),
     },
     {
-      path: "/editar",
-      name: "editar",
+      path: "/editarConminatoria",
+      name: "editarConminatoria",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import("../views/editar.vue"),
+      component: () => import("../views/editarConminatoria.vue"),
     },
     {
-      path: "/reportes",
-      name: "reportes",
+      path: "/editarFiscal",
+      name: "editarFiscal",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import("../views/reportes.vue"),
+      component: () => import("../views/editarFiscal.vue"),
     },
     {
       path: "/salir",

@@ -12,18 +12,21 @@
       </thead>
       <tbody>
         <tr v-for="item in items" :key="item.ci_fiscal">
-          <td>{{ item.ci_fiscal }}</td>
-          <td>{{ item.nombre_fiscal }}</td>
-          <td>{{ item.telefono }}</td>
+          <td>{{ item.ci_usuario }}</td>
+          <td>{{ item.nombre_completo_usuario }}</td>
+          <td>{{ item.telefono_usuario }}</td>
           <td class="has-text-centered">
             <router-link
-              :to="{ name: 'editar', params: { id: item.ci_fiscal } }"
+              :to="{
+                name: 'editarFiscal',
+                params: { id: item.id_usuario },
+              }"
               class="button is-info is-small"
               >Editar</router-link
             >
             <a
               class="button is-danger is-small"
-              @click="deleteProduct(item.ci_fiscal)"
+              @click="ocultarFiscal(item.id_usuario)"
               >eliminar</a
             >
           </td>
@@ -46,12 +49,12 @@ export default {
   },
 
   created() {
-    this.getProducts();
+    this.getFiscales();
   },
 
   methods: {
     // Get All Products
-    async getProducts() {
+    async getFiscales() {
       try {
         const response = await axios.get("http://localhost:9001/fiscales");
         this.items = response.data;
@@ -61,10 +64,10 @@ export default {
     },
 
     // Delete Product
-    async deleteProduct(id) {
+    async ocultarFiscal(id) {
       try {
         await axios.delete(`http://localhost:9001/fiscales/${id}`);
-        this.getProducts();
+        this.getFiscales();
       } catch (err) {
         console.log(err);
       }

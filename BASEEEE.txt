@@ -1,5 +1,6 @@
 CREATE TABLE usuarios(
-    id_usuario varchar(20) NOT NULL,
+    id_usuario int NOT NULL AUTO_INCREMENT,
+    ci_usuario varchar(20) NOT NULL UNIQUE,
     pass_usuario varchar(64),
     nombre_completo_usuario varchar (50) NOT NULL,
     telefono_usuario varchar(20) DEFAULT "No agregado",
@@ -11,7 +12,7 @@ CREATE TABLE usuarios(
 CREATE TABLE tipo_usuario(
     id_tipo_usuario int NOT NULL AUTO_INCREMENT,
     tipo_usuario varchar(10) DEFAULT "fiscal",
-    id_usuario_tipo varchar (20),
+    id_usuario_tipo int,
     PRIMARY KEY (id_tipo_usuario),
     FOREIGN KEY (id_usuario_tipo) REFERENCES usuarios(id_usuario)
     );
@@ -30,12 +31,12 @@ CREATE TABLE conminatorias (
     realizado_conmi char(1),
     oculto_conmi char(1) DEFAULT '0',
     fecha_creacion_conmi timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    id_usuario_conmi varchar (20),
+    id_usuario_conmi int,
     PRIMARY KEY (id_conmi),
     FOREIGN KEY (id_usuario_conmi) REFERENCES usuarios(id_usuario)
 );
 
-INSERT INTO usuarios (id_usuario, pass_usuario, nombre_completo_usuario, telefono)
+INSERT INTO usuarios (ci_usuario, pass_usuario, nombre_completo_usuario, telefono_usuario)
 VALUES ("CI12345","admin","ADMIN ADMIN",72881233),
 ("CI223345","fiscal1","FISCAL UNO", 72721233),
 ("CI1234544","fiscal2","FISCAL DOS",7271223),
@@ -44,20 +45,20 @@ VALUES ("CI12345","admin","ADMIN ADMIN",72881233),
 ("CI123454434","fiscal5","FISCAL CINCO",747621003);
 
 INSERT INTO tipo_usuario (tipo_usuario, id_usuario_tipo)
-VALUES ("admin","CI12345"),
-("fiscal","CI223345"),
-("fiscal","CI1234544"),
-("fiscal","CI12345123"),
-("fiscal","CI1212178"),
-("fiscal","CI123454434");
+VALUES ("admin",1),
+("fiscal",2),
+("fiscal",3),
+("fiscal",4),
+("fiscal",5),
+("fiscal",6);
 
 INSERT INTO conminatorias (cud_conmi,nurej_conmi,fiscal_conmi,denunciado_conmi,denunciante_conmi,delito_conmi,fecha_notif_cd_conmi,fecha_notif_fiscal_conmi,tiempo_restante_conmi,realizado_conmi,id_usuario_conmi)
-VALUES ("501123123","PT-789234","FISCAL UNO","ESTEBAN QUITO","MARIO LOPEZ","ROBO","2022-05-20","2022-05-20","2022-05-20","0","CI223345"),
-("501455554","PT-299234","FISCAL UNO","ESTEBAN USTAREZ, MARIO HUANCA","LUCHO ARCE","ROBO","2022-05-22","2022-05-22","2022-05-27","0","CI223345"),
-("501533444","PT-276234","FISCAL DOS","LUIS CHOQUE","MAURA CHOQUE","VIOLENCIA FAMILIAR","2022-05-23","2022-05-23","2022-05-28","0","CI1234544"),
-("501123555","PT-867234","FISCAL TRES","ALBERTO PEREZ, CRISTIANO MESSI, KYLIAN GRIEZZMAN, HECTOR LEWANDOWSKY","ZINEDINE ZIDANE","ROBO AGRAVADO","2022-05-18","2022-05-18","2022-05-23","0","CI12345123"),
-("508777878","PT-768234","FISCAL CUATRO","DARIEN MAMANI","NOEMI UÑO","LESIONES GRAVES","2022-05-24","2022-05-24","2022-05-29","0","CI1212178"),
-("501678998","PT-232234","FISCAL CINCO","LUISA CHOQUEHUANCA","LIONEL BENZEMA","ESTAFA","2022-05-20","2022-05-25","2022-05-29","0","CI123454434");
+VALUES ("501123123","PT-789234","FISCAL UNO","ESTEBAN QUITO","MARIO LOPEZ","ROBO","2022-05-20","2022-05-20","2022-05-20","0",1),
+("501455554","PT-299234","FISCAL UNO","ESTEBAN USTAREZ, MARIO HUANCA","LUCHO ARCE","ROBO","2022-05-22","2022-05-22","2022-05-27","0",1),
+("501533444","PT-276234","FISCAL DOS","LUIS CHOQUE","MAURA CHOQUE","VIOLENCIA FAMILIAR","2022-05-23","2022-05-23","2022-05-28","0",2),
+("501123555","PT-867234","FISCAL TRES","ALBERTO PEREZ, CRISTIANO MESSI, KYLIAN GRIEZZMAN, HECTOR LEWANDOWSKY","ZINEDINE ZIDANE","ROBO AGRAVADO","2022-05-18","2022-05-18","2022-05-23","0",3),
+("508777878","PT-768234","FISCAL CUATRO","DARIEN MAMANI","NOEMI UÑO","LESIONES GRAVES","2022-05-24","2022-05-24","2022-05-29","0",4),
+("501678998","PT-232234","FISCAL CINCO","LUISA CHOQUEHUANCA","LIONEL BENZEMA","ESTAFA","2022-05-20","2022-05-25","2022-05-29","0",5);
 
 
 
