@@ -1,4 +1,4 @@
-npm install font y server
+npm install front y server
 
 npm run dev 
 
