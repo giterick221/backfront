@@ -1,10 +1,15 @@
 <template>
-  <h1>EDITAR</h1>
-  <div>
+  <h1 id="editarTitulo">REGISTRAR CONMINATORIA</h1>
+  <div id="registrar">
     <div class="field">
       <label class="label">CUD</label>
       <div class="control">
-        <input class="input" type="text" placeholder="CUD" v-model="cud" />
+        <input
+          class="form-control"
+          type="text"
+          placeholder="CUD"
+          v-model="cud"
+        />
       </div>
     </div>
     <div class="field">
@@ -27,23 +32,23 @@
     <div class="field">
       <label class="label">DENUNCIADO</label>
       <div class="control">
-        <input
+        <textarea
           class="input"
           type="text"
           placeholder="DENUNCIADO"
           v-model="denunciado"
-        />
+        ></textarea>
       </div>
     </div>
     <div class="field">
       <label class="label">DENUNCIANTE</label>
       <div class="control">
-        <input
+        <textarea
           class="input"
           type="text"
           placeholder="DENUNCIANTE"
           v-model="denunciante"
-        />
+        ></textarea>
       </div>
     </div>
     <div class="field">
@@ -101,16 +106,16 @@
         />
       </div>
     </div>
+    <br />
     <div class="control">
-      <button class="button is-success" @click="insertarConminatoria">
-        UPDATE
+      <button class="btn btn-primary" @click="insertarConminatoria">
+        REGISTRAR
       </button>
     </div>
   </div>
 </template>
 
 <script>
-// import axios
 import axios from "axios";
 
 export default {
@@ -163,4 +168,16 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+#registrar {
+  width: auto;
+  background-color: rgb(28, 179, 154);
+  margin: 10px 50px 50px 50px;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+}
+#editarTitulo {
+  text-align: center;
+}
+</style>

@@ -54,7 +54,6 @@ export default {
     this.getFiscalId();
   },
   methods: {
-    // Get Product By Id
     async getFiscalId() {
       try {
         const respuestaApi = await axios.get(
@@ -68,7 +67,6 @@ export default {
       }
     },
 
-    // Update product
     async editarFiscal() {
       try {
         await axios.put(

@@ -27,12 +27,13 @@
     <div class="field">
       <label class="label">DENUNCIADO</label>
       <div class="control">
-        <input
+        <textarea
           class="input"
           type="text"
           placeholder="DENUNCIADO"
           v-model="denunciado"
-        />
+        >
+        </textarea>
       </div>
     </div>
     <div class="field">
@@ -112,7 +113,7 @@
 <script>
 // import axios
 import axios from "axios";
-
+import moment from "moment";
 export default {
   name: "editarConminatoria",
   data() {
@@ -133,7 +134,11 @@ export default {
     this.getConminatoriaId();
   },
   methods: {
-    // Get Product By Id
+    format_date(value) {
+      if (value) {
+        return moment(String(value)).format("DD-MM-YYYY");
+      }
+    },
     async getConminatoriaId() {
       try {
         const respuestaApi = await axios.get(
@@ -154,7 +159,6 @@ export default {
       }
     },
 
-    // Update product
     async editarConminatoria() {
       try {
         await axios.put(

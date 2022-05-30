@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import ingresar from "../views/ingresar.vue";
 import inicio from "../views/inicio.vue";
 
 const router = createRouter({

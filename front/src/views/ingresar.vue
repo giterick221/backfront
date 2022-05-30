@@ -1,18 +1,22 @@
 <template>
   <div id="login">
-    <h1>Login</h1>
+    <h1>INGRESAR</h1>
     <input
       type="text"
       name="username"
-      v-model="input.username"
-      placeholder="Username"
+      v-model="input_nom_usuario"
+      placeholder="CI"
     />
+    <br />
+    <br />
     <input
       type="password"
       name="password"
-      v-model="input.password"
+      v-model="input_pass_usuario"
       placeholder="Password"
     />
+    <br />
+    <br />
     <button type="button" v-on:click="login()">Login</button>
   </div>
 </template>
@@ -23,17 +27,17 @@ export default {
   data() {
     return {
       input: {
-        username: "",
-        password: "",
+        nom_usuario: "",
+        pass_usuario: "",
       },
     };
   },
   methods: {
     login() {
-      if (this.input.username != "" && this.input.password != "") {
+      if (this.input_nom_usuario != "" && this.input_pass_usuario != "") {
         if (
-          this.input.username == this.$parent.mockAccount.username &&
-          this.input.password == this.$parent.mockAccount.password
+          this.input_nom_usuario == this.$parent.mockAccount.nom_usuario &&
+          this.input_pass_usuario == this.$parent.mockAccount.pass_usuario
         ) {
           this.$emit("authenticated", true);
           this.$router.replace({ name: "secure" });
@@ -50,11 +54,12 @@ export default {
 
 <style scoped>
 #login {
-  width: 500px;
-  border: 1px solid #cccccc;
-  background-color: #ffffff;
+  width: 250px;
+  background-color: rgb(28, 179, 154);
   margin: auto;
   margin-top: 200px;
   padding: 20px;
+  border-radius: 5px;
+  color: white;
 }
 </style>

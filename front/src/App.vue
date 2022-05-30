@@ -13,8 +13,6 @@ import { RouterLink, RouterView } from "vue-router";
         |
         <RouterLink to="/editarConminatoria">EDITAR</RouterLink>
         |
-        <RouterLink to="/reportes">REPORTES</RouterLink>
-        |
         <RouterLink to="/salir">SALIR</RouterLink>
       </nav>
     </div>
