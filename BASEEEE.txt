@@ -1,9 +1,9 @@
 CREATE TABLE usuarios(
     id_usuario int NOT NULL AUTO_INCREMENT,
-    ci_usuario varchar(20) NOT NULL UNIQUE,
-    pass_usuario varchar(64),
-    nombre_completo_usuario varchar (50) NOT NULL,
-    telefono_usuario varchar(20) DEFAULT "No agregado",
+    ci_usuario varchar(16) NOT NULL UNIQUE,
+    pass_usuario varchar(128),
+    nombre_completo_usuario varchar (64) NOT NULL,
+    telefono_usuario varchar(16) DEFAULT "No agregado",
     oculto_usuario char(1) DEFAULT "0",
     fecha_creacion_usuario timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id_usuario)
@@ -19,17 +19,17 @@ CREATE TABLE tipo_usuario(
 
 CREATE TABLE conminatorias (
     id_conmi int NOT NULL AUTO_INCREMENT,
-    cud_conmi varchar(25),
-    nurej_conmi varchar(25),
-    fiscal_conmi varchar(50),
-    denunciado_conmi varchar(255),
-    denunciante_conmi varchar(255),
-    delito_conmi varchar(50),
-    fecha_notif_cd_conmi date,
-    fecha_notif_fiscal_conmi date,
-    tiempo_restante_conmi date,
-    realizado_conmi char(1),
-    oculto_conmi char(1) DEFAULT '0',
+    cud_conmi varchar(32) NOT NULL,
+    nurej_conmi varchar(32) NOT NULL,
+    fiscal_conmi varchar(64) NOT NULL,
+    denunciado_conmi text,
+    denunciante_conmi text,
+    delito_conmi varchar(64),
+    fecha_notif_cd_conmi date NOT NULL,
+    fecha_notif_fiscal_conmi date NOT NULL,
+    tiempo_restante_conmi date NOT NULL,
+    realizado_conmi char(1) NOT NULL DEFAULT '0',
+    oculto_conmi char(1) NOT NULL DEFAULT '0',
     fecha_creacion_conmi timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     id_usuario_conmi int,
     PRIMARY KEY (id_conmi),
@@ -52,7 +52,7 @@ VALUES ("admin",1),
 ("fiscal",5),
 ("fiscal",6);
 
-INSERT INTO conminatorias (cud_conmi,nurej_conmi,fiscal_conmi,denunciado_conmi,denunciante_conmi,delito_conmi,fecha_notif_cd_conmi,fecha_notif_fiscal_conmi,tiempo_restante_conmi,realizado_conmi,id_usuario_conmi)
+INSERT INTO comminatorias (cud_conmi,nurej_conmi,fiscal_conmi,denunciado_conmi,denunciante_conmi,delito_conmi,fecha_notif_cd_conmi,fecha_notif_fiscal_conmi,tiempo_restante_conmi,realizado_conmi,id_usuario_conmi)
 VALUES ("501123123","PT-789234","FISCAL UNO","ESTEBAN QUITO","MARIO LOPEZ","ROBO","2022-05-20","2022-05-20","2022-05-20","0",1),
 ("501455554","PT-299234","FISCAL UNO","ESTEBAN USTAREZ, MARIO HUANCA","LUCHO ARCE","ROBO","2022-05-22","2022-05-22","2022-05-27","0",1),
 ("501533444","PT-276234","FISCAL DOS","LUIS CHOQUE","MAURA CHOQUE","VIOLENCIA FAMILIAR","2022-05-23","2022-05-23","2022-05-28","0",2),
@@ -61,5 +61,4 @@ VALUES ("501123123","PT-789234","FISCAL UNO","ESTEBAN QUITO","MARIO LOPEZ","ROBO
 ("501678998","PT-232234","FISCAL CINCO","LUISA CHOQUEHUANCA","LIONEL BENZEMA","ESTAFA","2022-05-20","2022-05-25","2022-05-29","0",5);
 
 
-
-sudo docker run --name baseprueba -e MYSQL_ROOT_PASSWORD=root-root -e MYSQL_DATABASE=conminatorias -p 3306:3306 -d mysql
+sudo docker run --name baseprueba -e MYSQL_ROOT_PASSWORD=root-root -e MYSQL_DATABASE=comminatorias -p 3306:3306 -d mysql
